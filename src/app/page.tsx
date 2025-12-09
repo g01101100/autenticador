@@ -3,6 +3,8 @@
 import LoadingPage from "@/components/LoadingPage";
 import { useSession } from "next-auth/react";
 
+const response = await fetch("/api/users");
+const data = await response.json();
 
 export default function Home() {
   const {data: session, status} = useSession();
@@ -26,6 +28,7 @@ export default function Home() {
           Seção verificada 
         </h2>
         <p className="text-gray-500">bem vindo, {session?.user?.name}!</p>
+        <p className="text-gray-500">olha o bigquery ai: </p>
       </div>
     </div>
   );
