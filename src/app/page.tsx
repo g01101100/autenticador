@@ -3,8 +3,6 @@
 import LoadingPage from "@/components/LoadingPage";
 import { useSession } from "next-auth/react";
 
-const response = await fetch("/api/users");
-const data = await response.json();
 
 export default function Home() {
   const {data: session, status} = useSession();
@@ -22,13 +20,17 @@ export default function Home() {
   
   return (
     <div className="grid items-center justify-items-center min-h-screen">
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center gap-5">
         <div className="animate-bounce [animation-delay:0s]">!</div>
         <h2 className="flex text-xl">
           Seção verificada 
         </h2>
-        <p className="text-gray-500">bem vindo, {session?.user?.name}!</p>
-        <p className="text-gray-500">olha o bigquery ai: </p>
+        <div className="flex justify-center items-center gap-2">
+          <p>IMG perfil: </p>
+          <img src={session.user.image || ''} alt="foto perfil google" className="rounded-full"/>
+        </div>
+        <p>Nome: {session?.user?.name}!</p>
+        <p>Status: {status}</p>
       </div>
     </div>
   );

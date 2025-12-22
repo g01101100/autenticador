@@ -2,6 +2,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Google_logo from '@/app/assets/Google_Logo.svg'
+import Instagram_logo from '@/app/assets/instagram_logo.jpg'
 import { signIn } from 'next-auth/react'
 import Link from "next/link"
 
@@ -11,22 +12,22 @@ export default function Login(){
     
         const inputStyle = "w-full px-2 py-1 outline-1 outline-gray-300 -outline-offset-1 rounded-sm bg-gray-100 text-xl text-black"
     
-        function criarUser(){
-            const data = {
-                username: username,
-                password: password,
-            }
-            fetch('http://localhost:3000/register',{
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then( response => response.json())
-            .then( data => console.log(data))
-            .catch( erro => console.log(erro))
-        }
+        // function criarUser(){
+        //     const data = {
+        //         username: username,
+        //         password: password,
+        //     }
+        //     fetch('http://localhost:3000/register',{
+        //         method: "POST",
+        //         headers: {
+        //             "Content-type": "application/json"
+        //         },
+        //         body: JSON.stringify(data)
+        //     })
+        //     .then( response => response.json())
+        //     .then( data => console.log(data))
+        //     .catch( erro => console.log(erro))
+        // }
     
         return(
             <div className="w-screen h-screen flex justify-center items-center">
@@ -69,6 +70,15 @@ export default function Login(){
                         value="Google" 
                         className="flex justify-center items-center w-full rounded-sm py-3 bg-white text-xl text-black cursor-pointer">
                             <Image src={Google_logo} alt="Google Logo"/>
+                        </button>
+                        
+                        <button 
+                        onClick={() => signIn("instagram", {callbackUrl: "/"})} 
+                        id="Instagram" 
+                        name="Instagram" 
+                        value="Instagram" 
+                        className="flex justify-center items-center w-full rounded-sm py-3 bg-white text-xl text-black cursor-pointer">
+                            <Image src={Instagram_logo} alt="Instagram Logo" className="w-10 rounded-full"/>
                         </button>
                 </div>
             </div>

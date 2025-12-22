@@ -17,25 +17,14 @@ export async function GET() {
         tripduration
       FROM
         \`bigquery-public-data.new_york.citibike_trips\`
-      LIMIT 10
+      LIMIT 100
     `;
 
     const [rows] = await bigquery.query({ query });
+
 
     return Response.json(rows);
   } catch (err: any) {
     return Response.json({ error: err.message }, { status: 500 });
   }
 }
-
-
-//perguntas brose:
-//
-// 
-//
-//
-//
-//
-//
-//
-//
